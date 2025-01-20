@@ -1,0 +1,48 @@
+server:
+  application:
+    id: "47caeff3-d7d4-4b3f-aa75-42a34818acbe"
+    name: "api"
+    delay: ${delay:0}
+  grpc:
+    addr: 0.0.0.0:9000
+    timeout: 1s
+  authentification:
+    token:
+    public:
+data:
+  database:
+    driver: pgsql
+    source: ${database_host:127.0.0.1}
+    port: ${database_port:5432}
+    database: ${database_user:app2}
+    login: ${database_login:postgres}
+    password: ${database_password:postgres}
+  cache:
+    addr: ${cache_host:127.0.0.1}
+    port: ${cache_port:11211}
+  queue:
+    host: ${queue_host:127.0.0.1}
+    port: ${queue_port:5672}
+    name: ${queue_name:rabbitmq}
+    pass: ${queue_pass:rabbitmq}
+params:
+  is_stop_list: true
+  cache:
+    category:
+      name: "GetCategory"
+      ttl: ${category_ttl:86400}
+    catalog:
+      name: "GetCatalog"
+      ttl: ${catalog_ttl:300}
+    carpet:
+      name: "GetCarpet"
+      ttl: ${carpet_ttl:7200}
+    admin:
+      name: "Admin"
+      ttl: ${admin_ttl:86400}
+    lock:
+      name: "Lock"
+      ttl: ${lock_ttl:86400}
+    client:
+      name: "Client"
+      ttl: ${client_ttl:43200}

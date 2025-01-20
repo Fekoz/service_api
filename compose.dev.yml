@@ -1,0 +1,35 @@
+version: "3.4"
+
+services:
+  service_api:
+    container_name: service_api
+    hostname: service_api
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "9000:9000"
+    restart: unless-stopped
+    environment:
+      - database_host=system_database
+      - database_port=5432
+      - database_user=app2
+      - database_login=postgres
+      - database_password=postgres
+      - cache_host=system_cache
+      - cache_port=11211
+      - queue_host=system_queue
+      - queue_port=5672
+      - queue_name=rabbitmq
+      - queue_pass=rabbitmq
+      - category_ttl=43200
+      - catalog_ttl=300
+      - carpet_ttl=7200
+      - admin_ttl=86400
+      - client_ttl=43200
+      - lock_ttl=86400
+    networks:
+      - carpetti_dev
+networks:
+  carpetti_dev:
+    external: true
